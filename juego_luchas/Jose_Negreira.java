@@ -1,22 +1,42 @@
 package juego_luchas;
 
-import java.util.Random;
+public class Jose_Negreira extends Personajes {
 
-public class Jose_Negreira {
-    Random rd = new Random();
-    private String nombre;
-    private int vida;
-    private int daño;
-    private int mana;
-
-    public Personajes(String nombre, int vida, int daño, int mana){
-        this.nombre = "Jose Negreira";
-        this.vida = 150;
-        this.daño = rd.nextInt(15, 30);
-        this.mana = 60;
+    public Jose_Negreira() {
+        super("Jose", 130, 120, 18);
     }
-    public String getNombre() {return nombre;}
-    public int getVida() {return vida;}
-    public int getMana() {return mana;}
-    public int getDaño() {return daño;}
+
+    @Override
+    public void habilidad1(Personajes enemigo) {
+        if (mana >= 10) {
+            enemigo.vida -= 20;
+            if (enemigo.vida < 0) enemigo.vida = 0;
+            mana -= 10;
+            System.out.println(nombre + " usa Ataque Veloz (20 daño)");
+        } else {
+            System.out.println("No hay suficiente mana");
+        }
+    }
+
+    @Override
+    public void habilidad2(Personajes enemigo) {
+        if (mana >= 15) {
+            enemigo.vida -= 25;
+            if (enemigo.vida < 0) enemigo.vida = 0;
+            mana -= 15;
+            System.out.println(nombre + " usa Combo Rápido (25 daño)");
+        } else {
+            System.out.println("No hay suficiente mana");
+        }
+    }
+
+    @Override
+    public String getHabilidad1Nombre() {
+        return "Ataque Veloz";
+    }
+
+    @Override
+    public String getHabilidad2Nombre() {
+        return "Combo Rápido";
+    }
 }

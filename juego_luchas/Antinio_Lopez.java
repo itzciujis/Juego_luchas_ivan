@@ -1,22 +1,42 @@
 package juego_luchas;
 
-import java.util.Random;
+public class Antinio_Lopez extends Personajes {
 
-public class Antinio_Lopez {
-    Random rd = new Random();
-    private String nombre;
-    private int vida;
-    private int daño;
-    private int mana;
-
-    public Personajes(String nombre, int vida, int daño, int mana){
-        this.nombre = "Antinio Lopez";
-        this.vida = 150;
-        this.daño = rd.nextInt(15, 30);
-        this.mana = 60;
+    public Antinio_Lopez() {
+        super("Antinio", 120, 100, 25);
     }
-    public String getNombre() {return nombre;}
-    public int getVida() {return vida;}
-    public int getMana() {return mana;}
-    public int getDaño() {return daño;}
+
+    @Override
+    public void habilidad1(Personajes enemigo) {
+        if (mana >= 25) {
+            enemigo.vida -= 50;
+            if (enemigo.vida < 0) enemigo.vida = 0;
+            mana -= 25;
+            System.out.println(nombre + " usa Golpe Destructor (50 daño)");
+        } else {
+            System.out.println("No hay suficiente mana");
+        }
+    }
+
+    @Override
+    public void habilidad2(Personajes enemigo) {
+        if (mana >= 20) {
+            enemigo.vida -= 30;
+            if (enemigo.vida < 0) enemigo.vida = 0;
+            mana -= 20;
+            System.out.println(nombre + " usa Ataque Rápido (30 daño)");
+        } else {
+            System.out.println("No hay suficiente mana");
+        }
+    }
+
+    @Override
+    public String getHabilidad1Nombre() {
+        return "Golpe Destructor";
+    }
+
+    @Override
+    public String getHabilidad2Nombre() {
+        return "Ataque Rápido";
+    }
 }
